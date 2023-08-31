@@ -30,7 +30,6 @@ The PCIe Analyzer Application is a web-based tool that allows you to analyze and
 
 2. Install the necessary dependencies and set up the application:
 
-   `
    ./start_app.sh
    
 
