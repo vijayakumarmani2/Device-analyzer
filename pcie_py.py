@@ -2,6 +2,7 @@
 import pyudev
 import json
 import subprocess
+import os
 
 def get_dmesg_logs(filter_str):
     try:
@@ -144,6 +145,7 @@ def create_pci_info():
 pci_info = create_pci_info()
 
 # Write the JSON to a file
-with open('pci_info.json', 'w') as f:
+with open('/var/pcie_analyzer/pci_info.json', 'w') as f:
     json.dump(pci_info, f, indent=4)
+os.chmod('/var/pcie_analyzer/pci_info.json', 0o777)
 
