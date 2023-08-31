@@ -25,10 +25,11 @@ The PCIe Analyzer Application is a web-based tool that allows you to analyze and
 
    
    git clone https://github.com/vijayakumarmani2/Device-analyzer.git
+   
    cd pcie-analyzer
    
 
-2. Install the necessary dependencies and set up the application:
+3. Install the necessary dependencies and set up the application:
 
    ./start_app.sh
    
@@ -39,7 +40,7 @@ The PCIe Analyzer Application is a web-based tool that allows you to analyze and
    - Start the application using Live Server.
    - Create a desktop shortcut for easy access.
 
-3. Open your web browser and navigate to `http://localhost:8080` to access the application.
+4. Open your web browser and navigate to `http://localhost:8080` to access the application.
 
 ## Directory Structure
 
