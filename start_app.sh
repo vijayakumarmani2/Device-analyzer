@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+# Function to start the application
+start_application() {
 # Check if myapp.service is already running
 if ! systemctl is-active --quiet pcie_analyzer.service; then
     echo "myapp.service is not running. Setting up the service..."
@@ -61,3 +64,15 @@ cp /var/pcie_analyzer/$DESKTOP_FILE /usr/share/applications/
 echo "Executed the desktop shortcut"
 # Start the live-server on a specific port (e.g., 8080)
 live-server --port=8080 &
+
+}
+
+# Check for the '-d' argument
+if [[ "$1" == "-d" ]]; then
+    # Run the application with debug mode (show all console output)
+    start_application
+else
+    # Run the application in the background (suppress console output)
+    start_application > /dev/null 2>&1 &
+    echo "Application started in the background."
+fi
