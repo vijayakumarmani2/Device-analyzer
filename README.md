@@ -46,18 +46,13 @@ The PCIe Analyzer Application is a web-based tool that allows you to analyze and
 
 To run the application in the background (without displaying console output), use the following command:
 
-bash
-
 ./start_app.sh
 
 ## Debugging Mode
 
 You can run the application in debugging mode with the -d argument. The benefit of using this mode is that it displays all console output, which can be helpful for troubleshooting and monitoring the application.
 
-bash
-
 ./start_app.sh -d
-
 
 ## Directory Structure
 
