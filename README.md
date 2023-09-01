@@ -42,6 +42,18 @@ The PCIe Analyzer Application is a web-based tool that allows you to analyze and
 
 4. Open your web browser and navigate to `http://localhost:8080` to access the application.
 
+## Running in the Background
+
+To run the application in the background (without displaying console output), use the following command:
+
+./start_app.sh
+
+## Debugging Mode
+
+You can run the application in debugging mode with the -d argument. The benefit of using this mode is that it displays all console output, which can be helpful for troubleshooting and monitoring the application.
+
+./start_app.sh -d
+
 ## Directory Structure
 
 - `/var/pcie_analyzer/`: Directory for hosting the application and data.
