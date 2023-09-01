@@ -26,7 +26,7 @@ fi
 # Check if live-server is installed globally
 if ! command -v live-server &>/dev/null; then
     echo "Installing live-server globally..."
-    apt-get install npm
+    apt-get install npm -y
     npm install -g live-server
 fi
 
