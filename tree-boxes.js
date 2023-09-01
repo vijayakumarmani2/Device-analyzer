@@ -1,21 +1,3 @@
-/***************************************************************
- *
- *  Copyright (C) 2016 Swayvil <swayvil@gmail.com>
- *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *  GNU General Public License for more details.
- *
- ***************************************************************/
 
 /*
  * Dependencies:
@@ -45,13 +27,13 @@ function treeBoxes(urlService, jsonData)
 	var margin = {
 					top : 0,
 					right : 0,
-					bottom : 100,
+					bottom : 0,
 					left : 0
 				 },
 		// Height and width are redefined later in function of the size of the tree
 		// (after that the data are loaded)
-		width = 800 - margin.right - margin.left,
-		height = 400 - margin.top - margin.bottom;
+		width = 900 - margin.right - margin.left,
+		height = 0 - margin.top - margin.bottom;
 	
 	var rectNode = { width : 200, height : 85, textMargin : 10 };
 		//var tooltip = { width : 230, height : 100, textMargin : 10 };
@@ -66,7 +48,7 @@ function treeBoxes(urlService, jsonData)
 	var mousedown; // Use to save temporarily 'mousedown.zoom' value
 	var mouseWheel,
 		mouseWheelName,
-		isKeydownZoom = false;
+		isKeydownZoom = true;
 	
 	var tree;
 	var baseSvg,
@@ -99,7 +81,7 @@ function treeBoxes(urlService, jsonData)
 
 	function drawTree(jsonData)
 	{
-		tree = d3.layout.tree().size([ height, width ]);
+		tree = d3.layout.tree().size([ height/2, width ]);
 		root = jsonData;
 		root.fixed = true;
 		
@@ -135,14 +117,40 @@ function treeBoxes(urlService, jsonData)
 		root.x0 = height / 2;
 		root.y0 = 0;
 	
-		baseSvg = d3.select('#tree-container').append('svg')
-	    .attr('width', width + margin.right + margin.left)
-		.attr('height', height + margin.top + margin.bottom)
-		.attr('class', 'svgContainer')
-		.call(d3.behavior.zoom()
-		      //.scaleExtent([0.5, 1.5]) // Limit the zoom scale
-		      .on('zoom', zoomAndDrag));
-	
+// Create a zoom behavior
+var zoom = d3.behavior.zoom()
+    .scaleExtent([0.5, 3]) // Set the minimum and maximum zoom scale
+    .on("zoom", function(scale, translate){
+        console.log("fonction zoom");
+        console.log(scale); console.log(translate);
+        zoomed(scale, translate);
+    });
+
+// Append an SVG element to the container
+var baseSvg = d3.select('#tree-container').append('svg')
+    .attr('width', width + margin.right + margin.left)
+    .attr('height', height + margin.top + margin.bottom)
+    .attr('class', 'svgContainer');
+// Create a group for the content that you want to zoom and drag
+var drawArea = baseSvg.append('g')
+    .attr('class', 'drawarea');
+
+
+// Define the zoomed function
+function zoomed() {
+    drawArea.attr('transform', 'translate(' + d3.event.translate + ') scale(' + d3.event.scale + ')');
+}
+
+const zoomContainer = baseSvg.append('g').attr('class', 'zoom-container');
+
+ // Enable zoom behavior
+  const zoom1 = d3.behavior.zoom()
+    .scaleExtent([0.5, 1.5]) // Adjust the scale extent as needed
+    .on('zoom', () => {
+      zoomContainer.attr('transform', d3.event.transform);
+    });
+    baseSvg.call(zoom1);
+
 		// Mouse wheel is desactivated, else after a first drag of the tree, wheel event drags the tree (instead of scrolling the window)
 		getMouseWheelEvent();
 		d3.select('#tree-container').select('svg').on(mouseWheelName, null);
@@ -157,10 +165,8 @@ function treeBoxes(urlService, jsonData)
 		// same for linkGroupToolTip and linkGroup,
 		// but this separation allows to manage the order on which elements are drew
 		// and so tooltips are always on top.
-		nodeGroup = svgGroup.append('g')
-					.attr('id', 'nodes');
-		linkGroup = svgGroup.append('g')
-					.attr('id', 'links');
+		 nodeGroup = zoomContainer.append('g').attr('id', 'nodes');
+                 linkGroup = zoomContainer.append('g').attr('id', 'links');
 		/*linkGroupToolTip = svgGroup.append('g')
 			   				.attr('id', 'linksTooltips');
 		nodeGroupTooltip = svgGroup.append('g')

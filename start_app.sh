@@ -48,6 +48,7 @@ install_python_packages "pyudev"
 install_python_packages "json"
 install_python_packages "subprocess"
 install_python_packages "os"
+install_python_packages "re"
 
 
 # Function to start the application
