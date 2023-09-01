@@ -14,7 +14,7 @@ def categorize_pcie_device(device_name):
     harddisk_patterns = [r'SSD', r'HDD']
     pcicard_patterns = [r'PCI', r'PCIe']
     audio_patterns = [r'Audio', r'Sound']
-    mem_patterns = [r'RAM', r'ROM',r'SRAM', r'DRAM']
+    mem_patterns = [r'RAM', r'ROM',r'SRAM', r'DRAM', r'Bridge/DRAM']
 
     # Check if the device name matches any category pattern
     for pattern in network_patterns:
