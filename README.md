@@ -15,10 +15,11 @@ The PCIe Analyzer Application is a web-based tool that allows you to analyze and
 
 ### Prerequisites
 
-- Node.js (v14 or later)
-- npm (Node Package Manager)
-- Live Server (npm package)
-
+- Python3: The script requires Python3 to run. If it's not already installed, the script will attempt to install it using `apt-get`.
+- npm: npm is required for package management. If it's not already installed, the script will attempt to install it using `apt-get`.
+- Node.js: This application uses Node.js to run the Live Server. If Node.js is not installed, you need to install it manually. You can download it from [the official Node.js website](https://nodejs.org/).
+- live-server (npm packages)
+  
 ### Installation
 
 1. Clone the repository to your local machine:
