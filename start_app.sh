@@ -1,5 +1,54 @@
 #!/bin/bash
 
+# Function to install missing npm packages
+install_npm_packages() {
+    # Check if the package is installed
+    if ! npm list -g "$1" &>/dev/null; then
+        echo "Installing $1..."
+        npm install -g "$1"
+    else
+        echo "$1 is already installed."
+    fi
+}
+
+# Function to install missing Python packages
+install_python_packages() {
+    # Check if the package is installed
+    if ! python -c "import $1" &>/dev/null; then
+        echo "Installing $1..."
+        pip install "$1"
+    else
+        echo "$1 is already installed."
+    fi
+}
+
+# Check and install Python3 if not already installed
+if ! command -v python3 &>/dev/null; then
+    echo "Installing Python3..."
+    apt-get update
+    apt-get install python3 -y
+else
+    echo "Python3 is already installed."
+fi
+
+# Check and install npm if not already installed
+if ! command -v npm &>/dev/null; then
+    echo "Installing npm..."
+    apt-get update
+    apt-get install npm -y
+else
+    echo "npm is already installed."
+fi
+
+# Check for and install missing npm packages
+install_npm_packages "live-server"
+
+# Check for and install missing Python packages
+install_python_packages "pyudev"
+install_python_packages "json"
+install_python_packages "subprocess"
+install_python_packages "os"
+
 
 # Function to start the application
 start_application() {
