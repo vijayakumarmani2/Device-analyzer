@@ -45,10 +45,10 @@ install_npm_packages "live-server"
 
 # Check for and install missing Python packages
 install_python_packages "pyudev"
-install_python_packages "json"
-install_python_packages "subprocess"
-install_python_packages "os"
-install_python_packages "re"
+#install_python_packages "json"
+#install_python_packages "subprocess"
+#install_python_packages "os"
+#install_python_packages "re"
 
 
 # Function to start the application
@@ -90,6 +90,8 @@ chmod -R 777 /var/pcie_analyzer/*
 
 # Navigate to /var/pcie_analyzer/
 cd /var/pcie_analyzer/
+
+sudo python3 pcie_py.py
 
 cp /var/pcie_analyzer/pci_card.png /usr/share/icons/
 
