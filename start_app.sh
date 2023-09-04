@@ -31,6 +31,15 @@ else
     echo "Python3 is already installed."
 fi
 
+# Check if pip is installed
+if ! command -v pip &>/dev/null; then
+    echo "Installing pip..."
+    apt-get update
+    apt-get install python3-pip -y
+else
+    echo "pip is already installed."
+fi
+
 # Check and install npm if not already installed
 if ! command -v npm &>/dev/null; then
     echo "Installing npm..."
