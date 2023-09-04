@@ -30,7 +30,7 @@ def categorize_pcie_device(device_name):
     # Define patterns for different categories
     network_patterns = [r'Ethernet', r'NIC', r'LAN', r'WLAN']
     cpu_patterns = [r'CPU', r'Processor']
-    gpu_patterns = [r'GPU', r'Graphics', r'UHD', r'HD']
+    gpu_patterns = [r'GPU', r'Graphics', r'UHD']
     usb_patterns = [r'USB', r'Hub']
     wifi_patterns = [r'WiFi', r'Wireless', r'Wi-Fi']
     harddisk_patterns = [r'SSD', r'HDD']
