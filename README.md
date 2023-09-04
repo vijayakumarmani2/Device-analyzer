@@ -1,12 +1,12 @@
 # Device-analyzer
 
-# PCIe Analyzer Application
+# PCIe Log Analyzer Application
 
-The PCIe Analyzer Application is a web-based tool that allows you to analyze and visualize PCIe device information. It provides a user-friendly interface for viewing PCIe device details. The application also comes with an automatic setup script that installs necessary dependencies, sets up a service for boot-time information retrieval, and creates a desktop shortcut for easy access.
+The PCIe log Analyzer Application is a web-based tool that allows you to analyze and visualize PCIe devices and their log information. It provides a user-friendly interface for viewing PCIe devices and driver details. The application also comes with an automatic setup script that installs necessary dependencies, sets up a service for boot-time information retrieval, and creates a desktop shortcut for easy access.
 
 ## Features
 
-- View detailed PCIe device information.
+- View detailed PCIe devices and log information.
 - Interactive visualization of PCIe device data.
 - Easy-to-use interface.
 - Automatic setup script for easy installation and configuration.
