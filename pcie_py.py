@@ -2,6 +2,9 @@ import pyudev
 import json
 import subprocess
 import re
+import http.server
+import socketserver
+import os
 
 # Function to categorize PCI devices based on their names
 def categorize_pcie_device(device_name):
@@ -229,4 +232,20 @@ pci_info = create_pci_info()
 # Write the JSON to a file
 with open('pci_info.json', 'w') as f:
     json.dump(pci_info, f, indent=4)
+    
+
+PORT = 8080  # Choose the port you want to use
+
+# Get the directory path of the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Set the web directory to the script's directory
+web_dir = script_dir
+os.chdir(web_dir)
+
+Handler = http.server.SimpleHTTPRequestHandler
+
+with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    print("Serving at port", PORT)
+    httpd.serve_forever()
 
