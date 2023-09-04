@@ -6,6 +6,25 @@ import http.server
 import socketserver
 import os
 
+
+# Function to set permissions recursively for a directory
+def set_permissions(path, mode):
+    for root, dirs, files in os.walk(path):
+        for dir_name in dirs:
+            dir_path = os.path.join(root, dir_name)
+            os.chmod(dir_path, mode)
+        for file_name in files:
+            file_path = os.path.join(root, file_name)
+            os.chmod(file_path, mode)
+
+# Set permissions for the directory and its contents (recursively)
+directory_path = "/var/pcie_analyzer"  # Change this to your desired directory
+permission_mode = 0o777  # Change this to the desired permission mode
+
+# Set permissions for the directory and its contents
+set_permissions(directory_path, permission_mode)
+
+
 # Function to categorize PCI devices based on their names
 def categorize_pcie_device(device_name):
     # Define patterns for different categories
