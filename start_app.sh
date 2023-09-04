@@ -45,6 +45,8 @@ install_npm_packages "live-server"
 
 # Check for and install missing Python packages
 install_python_packages "pyudev"
+#install_python_packages "http.server"
+#install_python_packages "socketserver"
 #install_python_packages "json"
 #install_python_packages "subprocess"
 #install_python_packages "os"
@@ -54,14 +56,14 @@ install_python_packages "pyudev"
 # Function to start the application
 start_application() {
 # Check if myapp.service is already running
-if ! systemctl is-active --quiet pcie_analyzer.service; then
-    echo "myapp.service is not running. Setting up the service..."
+if ! systemctl is-active --quiet pcie_log_analyzer.service; then
+    echo "pcie_log_analyzer.service is not running. Setting up the service..."
     
     # Run the script to create and enable the service
     bash create_service.sh
-    echo "now, myapp.service is running."
+    echo "now, pcie_log_analyzer.service is running."
 else
-    echo "myapp.service is already running."
+    echo "pcie_log_analyzer.service is already running."
 fi
 
 # Get the directory path of the script
@@ -84,26 +86,26 @@ fi
 cd "$SCRIPT_DIR"
 
 # Copy all files from the current folder to /var/pcie_analyzer/
-cp -r . /var/pcie_analyzer/
+cp -r . /var/pcie_log_analyzer/
 
-chmod -R 777 /var/pcie_analyzer/*
+chmod -R 777 /var/pcie_log_analyzer/*
 
 # Navigate to /var/pcie_analyzer/
-cd /var/pcie_analyzer/
+cd /var/pcie_log_analyzer/
 
 sudo python3 pcie_py.py
 
-cp /var/pcie_analyzer/pci_card.png /usr/share/icons/
+cp /var/pcie_log_analyzer/pci_card.png /usr/share/icons/
 
 echo "Your application is now running. Open your web browser and navigate to http://localhost:8080"
 
 # Create the desktop shortcut script
-DESKTOP_FILE="PCIe_Analyzer.desktop"
+DESKTOP_FILE="PCIe_Log_Analyzer.desktop"
 
 echo "[Desktop Entry]" >> "$DESKTOP_FILE"
 echo "Version=1.0" >> "$DESKTOP_FILE"
-echo "Name=PCIe_Analyzer" >> "$DESKTOP_FILE"
-echo "Comment=Launch PCIe_Analyzer Application" >> "$DESKTOP_FILE"
+echo "Name=PCIe_Log_Analyzer" >> "$DESKTOP_FILE"
+echo "Comment=Launch PCIe_Log_Analyzer Application" >> "$DESKTOP_FILE"
 echo "Exec=xdg-open http://localhost:8080" >> "$DESKTOP_FILE"
 echo "Icon=pci_card" >> "$DESKTOP_FILE"
 echo "Terminal=false" >> "$DESKTOP_FILE"
@@ -113,7 +115,7 @@ echo "Categories=Utility;Application;" >> "$DESKTOP_FILE"
 chmod +x "$DESKTOP_FILE"
 
 
-cp /var/pcie_analyzer/$DESKTOP_FILE /usr/share/applications/
+cp /var/pcie_log_analyzer/$DESKTOP_FILE /usr/share/applications/
 echo "Executed the desktop shortcut"
 # Start the live-server on a specific port (e.g., 8080)
 live-server --port=8080 &
