@@ -71,7 +71,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-Developed by [vijayakumarmani2](https://github.com/your-username)
+Developed by [vijayakumarmani2](https://github.com/vijayakumarmani2)
 ```
 
 Feel free to customize the above template with your specific details and adjust any paths or descriptions to match your project structure.
