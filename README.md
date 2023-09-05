@@ -27,7 +27,7 @@ The PCIe Log Analyzer Application is a web-based tool that allows you to analyze
    
    git clone https://github.com/vijayakumarmani2/Device-analyzer.git
    
-   cd pcie-analyzer
+   cd Device-analyzer
    
 
 3. Install the necessary dependencies and set up the application:
